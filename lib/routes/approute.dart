@@ -5,4 +5,5 @@ abstract class AppRoute {
   static const signin = '/signin';
   static const signup = '/signup';
   static const homescreen = '/homescreen';
+  static const chatroom = '/chatroom';
 }

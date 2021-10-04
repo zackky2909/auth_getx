@@ -4,8 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:test_register/UI/home/home_screen.dart';
-import 'package:test_register/components/Remember.dart';
+import 'package:test_register/UI/screens/home_screen.dart';
 import 'package:test_register/components/button.dart';
 import 'package:test_register/components/textform.dart';
 import 'package:test_register/controller/authcontroller.dart';
@@ -45,12 +44,10 @@ class SignIn extends StatelessWidget {
                         controller: authController.emailController,
                         labelText: 'Email',
                         hintText: 'Enter your email',
-                        icon1: Icons.email_rounded,
-                        icon2: Icons.close,
-                        press: () {
-                          boolController.changeVisible();
-                        },
-                        obscureText: true,
+                        icon: Icon(Icons.email_rounded,
+                            color: color1.withOpacity(0.5)),
+                        press: () {},
+                        obscureText: false,
                       ),
                       SizedBox(height: 20),
                       GetBuilder<BoolController>(
@@ -61,8 +58,11 @@ class SignIn extends StatelessWidget {
                               labelText: 'Password',
                               hintText: 'At least 8 characters',
                               obscureText: !boolController.isVisible,
-                              icon1: Icons.visibility,
-                              icon2: Icons.visibility_off,
+                              icon: !boolController.isVisible
+                                  ? Icon(Icons.visibility_off,
+                                      color: color1.withOpacity(0.5))
+                                  : Icon(Icons.visibility,
+                                      color: color1.withOpacity(0.5)),
                               press: () {
                                 boolController.changeVisible();
                               },
@@ -71,13 +71,12 @@ class SignIn extends StatelessWidget {
                     ]),
                   ),
                   SizedBox(height: 20),
-                  RowRemember(),
                   SizedBox(height: 100),
                   BottomButton(
                     press: () {
                       authController.signIn(authController.emailController.text,
                           authController.passwordController.text);
-                      Get.to(() => HomeScreen());
+                      Get.to(() => ChatHomeScreen());
                     },
                     color: color1,
                     text: 'Continue',

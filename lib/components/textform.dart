@@ -12,8 +12,7 @@ class TextForm extends StatelessWidget {
   final String labelText;
   final String hintText;
   final void Function() press;
-  final IconData icon1;
-  final IconData icon2;
+  final Icon icon;
   final bool obscureText;
 
   TextForm({
@@ -22,8 +21,7 @@ class TextForm extends StatelessWidget {
     required this.labelText,
     required this.hintText,
     required this.press,
-    required this.icon1,
-    required this.icon2,
+    required this.icon,
     required this.obscureText,
   }) : super(key: key);
 
@@ -42,12 +40,11 @@ class TextForm extends StatelessWidget {
           suffixIcon: Padding(
             padding: EdgeInsets.only(right: 5),
             child: IconButton(
-                onPressed: () {
-                  press;
-                },
-                icon: controller.text.isEmpty
-                    ? Icon(icon1, color: color1.withOpacity(0.5))
-                    : Icon(icon2, color: color1.withOpacity(0.5))),
+              onPressed: () {
+                press;
+              },
+              icon: icon,
+            ),
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
